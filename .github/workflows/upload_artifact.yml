@@ -31,9 +31,9 @@ jobs:
     - name: Setup
       id: setup
       run: |
-        ::set-env name=OUTPUT_DIR::../output
+        echo "::set-env name=OUTPUT_DIR::../output"
         # Save the path for other steps
-        echo ::set-output name=output_directory::${OUTPUT_DIR}
+        echo "::set-output name=output_directory::${OUTPUT_DIR}"
         mkdir ${OUTPUT_DIR}
         
     - name: Run a multi-line script
