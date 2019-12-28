@@ -12,14 +12,14 @@ jobs:
     strategy:
       matrix:
         config:
-        - {
-            name: "Linux Latest x64", artifact: "Linux-x64.zip",
-            os: ubuntu-latest
-          }
-        - {
-            name: "macOS Latest x64", artifact: "macOS-x64.zip",
-            os: macos-latest
-          }
+#        - {
+#            name: "Linux Latest x64", artifact: "Linux-x64.zip",
+#            os: ubuntu-latest
+#          }
+#        - {
+#            name: "macOS Latest x64", artifact: "macOS-x64.zip",
+#            os: macos-latest
+#          }
         - {
             name: "Windows Latest x64", artifact: "Windows-x64.zip",
             os: windows-latest,
@@ -31,10 +31,12 @@ jobs:
     - name: Setup
       id: setup
       env:
-        OUTPUT_DIR: ../output
+        OUTPUT_DIR: "../output"
       run: |
         # Save the path for other steps
-        echo "Using output directory: ${OUTPUT_DIR}"
+        echo Home directory: ${HOME}
+        echo Workspace dir:  ${GITHUB_WORKSPACE}
+        echo Using output directory: ${OUTPUT_DIR}
         echo "::set-output name=output_directory::${OUTPUT_DIR}"
         mkdir ${OUTPUT_DIR}
         
