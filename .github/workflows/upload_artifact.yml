@@ -31,6 +31,7 @@ jobs:
 
     - name: Setup
       id: setup
+      shell: bash
       env:
         OUTPUT_DIR: "../output"
       run: |
