@@ -30,7 +30,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: Setup
       id: setup
-      env: OUTPUT_DIR: ../output
+      env:
+        OUTPUT_DIR: ../output
       run: |
         # Save the path for other steps
         echo "Using output directory: ${OUTPUT_DIR}"
