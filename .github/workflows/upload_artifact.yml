@@ -7,8 +7,19 @@ env:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      matrix:
+        config:
+        - {
+            name: "Linux Latest x64", artifact: "Linux-x64.zip",
+            os: ubuntu-latest
+          }
+        - {
+            name: "macOS Latest x64", artifact: "macOS-x64.zip",
+            os: macos-latest
+          }
 
     steps:
     - uses: actions/checkout@v1
@@ -34,4 +45,4 @@ jobs:
       with:
         # There's no ENV variable support for path! Only hard coded values work. I.e. the referenced value MAY NOT contain $HOME or other env values! See https://github.com/actions/upload-artifact/issues/8
         path: ${{ steps.setup.outputs.output_directory }}
-        name: ${{ env.APP_NAME}}
+        name: ${{ env.APP_NAME}}-${{ matrix.config.artifact }}
