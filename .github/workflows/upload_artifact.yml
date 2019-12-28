@@ -30,9 +30,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: Setup
       id: setup
-      env:
-        OUTPUT_DIR: ../output
       run: |
+        ::set-env name=OUTPUT_DIR::../output
         # Save the path for other steps
         echo ::set-output name=output_directory::${OUTPUT_DIR}
         mkdir ${OUTPUT_DIR}
