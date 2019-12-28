@@ -12,14 +12,14 @@ jobs:
     strategy:
       matrix:
         config:
-#        - {
-#            name: "Linux Latest x64", artifact: "Linux-x64.zip",
-#            os: ubuntu-latest
-#          }
-#        - {
-#            name: "macOS Latest x64", artifact: "macOS-x64.zip",
-#            os: macos-latest
-#          }
+        - {
+            name: "Linux Latest x64", artifact: "Linux-x64.zip",
+            os: ubuntu-latest
+          }
+        - {
+            name: "macOS Latest x64", artifact: "macOS-x64.zip",
+            os: macos-latest
+          }
         - {
             name: "Windows Latest x64", artifact: "Windows-x64.zip",
             os: windows-latest,
@@ -31,6 +31,8 @@ jobs:
 
     - name: Setup
       id: setup
+      # do NOT use default powershell on Windows, or env settings must be handled differently!
+      # https://github.community/t5/GitHub-Actions/Env-is-null-on-windows-operating-system/m-p/37979/highlight/false#M3174
       shell: bash
       env:
         OUTPUT_DIR: "../output"
@@ -53,6 +55,7 @@ jobs:
     - uses: actions/upload-artifact@v1
       id: upload_artifact
       with:
-        # There's no ENV variable support for path! Only hard coded values work. I.e. the referenced value MAY NOT contain $HOME or other env values! See https://github.com/actions/upload-artifact/issues/8
+        # There's no ENV variable support for path! Only hard coded values work. I.e. the referenced value MAY NOT contain $HOME or other env values!
+        # See https://github.com/actions/upload-artifact/issues/8
         path: ${{ steps.setup.outputs.output_directory }}
         name: ${{ env.APP_NAME}}-${{ matrix.config.artifact }}
