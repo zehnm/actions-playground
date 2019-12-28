@@ -28,15 +28,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
     - name: Setup
       id: setup
       env:
         OUTPUT_DIR: "../output"
       run: |
         # Save the path for other steps
-        echo Home directory: ${HOME}
-        echo Workspace dir:  ${GITHUB_WORKSPACE}
-        echo Using output directory: ${OUTPUT_DIR}
+        echo "Home directory: ${HOME}"
+        echo "Workspace dir:  ${GITHUB_WORKSPACE}"
+        echo "Using output directory: ${OUTPUT_DIR}"
         echo "::set-output name=output_directory::${OUTPUT_DIR}"
         mkdir ${OUTPUT_DIR}
         
